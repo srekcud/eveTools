@@ -1,0 +1,88 @@
+services:
+  webserver:
+    image: nginx:alpine
+    container_name: webserver-evetools
+    working_dir: /var/www
+    volumes:
+        - $PWD:/var/www/
+        - ./volumes/nginx:/etc/nginx/conf.d
+    ports:
+        - "${NETWORK_PREFIX}.1:80:80"
+    networks:
+        evetools:
+            ipv4_address: ${NETWORK_PREFIX}.2
+
+###> doctrine/doctrine-bundle ###
+  # database:
+  #   image: postgres:16.1-alpine3.19
+  #   environment:
+  #     POSTGRES_DB: ${POSTGRES_DB:-evetools}
+  #     # You should definitely change the password in production
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+  #     POSTGRES_USER: ${POSTGRES_USER:-evetools}
+  #   volumes:
+  #     - database_data:/var/lib/postgresql/data:rw
+  #   networks:
+  #       evetools:
+  #           ipv4_address: ${NETWORK_PREFIX}.3
+
+  php-cli:
+    image: evetools-cli:0.1
+    container_name: evetools-php-cli
+    working_dir: /var/www/
+    command: /bin/true
+    networks:
+      evetools:
+        ipv4_address: ${NETWORK_PREFIX}.4
+    volumes:
+      - ./volumes/composer-cache:/home/www-data/.composer/cache/:cached
+      - ./volumes/composer-home:/home/www-data/.composer:cached
+      - ./volumes/composer-home-root:/root/.composer:cached
+      - ./volumes/shared:/tmp/shared:cached
+      - $PWD:/var/www
+  
+  php-fpm:
+    image: evetools-fpm:0.1
+    container_name: evetools-php-fpm
+    working_dir: /var/www/
+    networks:
+      evetools:
+        ipv4_address: ${NETWORK_PREFIX}.5
+    volumes:
+      - ./volumes/php-fpm:/var/log/php:cached
+      - .:/var/www/:cached
+  
+  # rabbitmq:
+  #   image: rabbitmq:3.12.12-management-alpine
+  #   container_name: evetools-rabbitmq
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: evetools
+  #     RABBITMQ_DEFAULT_PASS: evetools
+  #   networks:
+  #     evetools:
+  #       ipv4_address: ${NETWORK_PREFIX}.10
+  
+  # redis:
+  #   image: redis:7.2.4-alpine3.19
+  #   container_name: evetools-redis
+  #   volumes:
+  #     - ./volumes/redis/data:/data
+  #   networks:
+  #     evetools:
+  #       ipv4_address: ${NETWORK_PREFIX}.11
+
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###
+
+
+networks:
+  evetools:
+    name: evetools
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_PREFIX}.0/28

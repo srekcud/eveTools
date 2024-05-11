@@ -1,0 +1,4 @@
+api_platform:
+  show_webby: false
+  title: 'Srekcud eveTools API'
+  description: 'Srekcud tooling to improve Eve Online experience'
