@@ -1,0 +1,24 @@
+PUT test
+{
+
+}
+
+
+POST /test/_doc
+{
+"name": "Hemani",
+"age" : 23,
+"experienceInYears" : 2
+}
+
+
+
+PUT ravworks_jobs
+{
+
+}
+
+PUT ravworks_jobs_retrieve
+{
+
+}

@@ -11,6 +11,14 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            esClient:
+                base_uri : http://%env(NETWORK_PREFIX)%.1:9200
+                headers:
+                    Content-Type: 'application/json'
+
+
 when@test:
     framework:
         test: true
