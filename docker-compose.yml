@@ -12,20 +12,6 @@ services:
         evetools:
             ipv4_address: ${NETWORK_PREFIX}.2
 
-###> doctrine/doctrine-bundle ###
-  # database:
-  #   image: postgres:16.1-alpine3.19
-  #   environment:
-  #     POSTGRES_DB: ${POSTGRES_DB:-evetools}
-  #     # You should definitely change the password in production
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-  #     POSTGRES_USER: ${POSTGRES_USER:-evetools}
-  #   volumes:
-  #     - database_data:/var/lib/postgresql/data:rw
-  #   networks:
-  #       evetools:
-  #           ipv4_address: ${NETWORK_PREFIX}.3
-
   php-cli:
     image: evetools-cli:0.1
     container_name: evetools-php-cli
@@ -51,7 +37,21 @@ services:
     volumes:
       - ./volumes/php-fpm:/var/log/php:cached
       - .:/var/www/:cached
-  
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    container_name: evetools-es
+    environment:
+      - discovery.type=single-node
+    ports:
+      - ${NETWORK_PREFIX}.1:9200:9200
+      - ${NETWORK_PREFIX}.1:9300:9300
+    networks:
+      evetools:
+        ipv4_address: ${NETWORK_PREFIX}.9
+    volumes:
+      - es_files:/usr/share/elasticsearch/data:cached
+
   # rabbitmq:
   #   image: rabbitmq:3.12.12-management-alpine
   #   container_name: evetools-rabbitmq
@@ -70,13 +70,6 @@ services:
   #   networks:
   #     evetools:
   #       ipv4_address: ${NETWORK_PREFIX}.11
-
-###< doctrine/doctrine-bundle ###
-
-volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
 
 
 networks:
