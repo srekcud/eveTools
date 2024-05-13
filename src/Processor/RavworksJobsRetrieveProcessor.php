@@ -27,7 +27,7 @@ readonly class RavworksJobsRetrieveProcessor implements ProcessorInterface
         $errors = [];
         try {
             echo "toto";
-//            $this->ravworkJobsProcedure->process();
+            $this->ravworkJobsProcedure->process();
         } catch (\Exception $exception) {
             $errors[] = $exception;
         }
