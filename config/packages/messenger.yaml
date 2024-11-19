@@ -1,0 +1,15 @@
+framework:
+    messenger:
+        transports:
+             identify-id:
+               dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/identify-id'
+        routing:
+             'App\Message\IdentifyIdMessage': identify-id
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'

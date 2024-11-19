@@ -20,5 +20,16 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Service\Procedure\IndustryJobsRetrievePersonalProcedure:
+        arguments:
+            $srekcudAlphaRefreshToken: '%env(SREKCUD_ALPHA_REFRESH_TOKEN)%'
+            $srekcudAlphaId: '%env(SREKCUD_ALPHA_ID)%'
+            $basicToken: '%env(BASIC_TOKEN)%'
+    App\Service\Procedure\IndustryJobsRetrieveCorporationProcedure:
+        arguments:
+            $srekcudAlphaRefreshToken: '%env(SREKCUD_ALPHA_REFRESH_TOKEN)%'
+            $basicToken: '%env(BASIC_TOKEN)%'
+            $corporationId: '%env(CRY_ID)%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

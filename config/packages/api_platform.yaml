@@ -1,9 +1,26 @@
 api_platform:
   show_webby: false
   title: 'Srekcud eveTools API'
+  version: '0.0.1'
   description: 'Srekcud tooling to improve Eve Online experience'
 
+  formats:
+    jsonld: [ 'application/ld+json' ]
   mapping:
     paths:
       - '%kernel.project_dir%/src/Entity'
-#      - '%kernel.project_dir%/src/Model'
+  resource_class_directories:
+    - '%kernel.project_dir%/src/ApiResource'
+  openapi:
+    swagger_ui_extra_configuration:
+      docExpansion: none
+      filter: true
+  defaults:
+    extra_properties:
+      rfc_7807_compliant_errors: false
+    normalization_context:
+      skip_null_values: false
+    patch_formats:
+      json: [ 'application/merge-patch+json' ]
+    swagger:
+      versions: [ 3 ]

@@ -17,6 +17,15 @@ framework:
                 base_uri : http://%env(NETWORK_PREFIX)%.1:9200
                 headers:
                     Content-Type: 'application/json'
+            ravworksClient:
+                base_uri : https://ravworks.com/plan/
+            eveEsiClient:
+                base_uri: https://esi.evetech.net/latest/
+                headers:
+                    Content-Type: 'application/json'
+                    Accept: 'application/json'
+            eveLoginClient:
+                base_uri: https://login.eveonline.com/
 
 
 when@test:

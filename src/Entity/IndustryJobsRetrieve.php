@@ -1,35 +1,36 @@
 <?php
+
 namespace App\Entity;
 
-use ApiPlatform\Metadata\Post;
-use App\Processor\RavworksJobsRetrieveProcessor;
-use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\IndustryJobsRetrieveRepository;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-#[Post(
-    uriTemplate: 'ravworks/jobs/retrieve',
-    denormalizationContext: ['groups' => [RavworksJobsRetrieve::POST]],
-    processor: RavworksJobsRetrieveProcessor::class,
-)]
-Class RavworksJobsRetrieve
+#[ORM\table(name: 'industry_job_retrieve')]
+#[ORM\Entity(repositoryClass: IndustryJobsRetrieveRepository::class)]
+class IndustryJobsRetrieve
 {
-    const POST='RAVWORK_JOBS_RUN_POST';
+    const string POST='INDUSTRY_JOB_RETRIEVE_POST';
 
-    private ?string $id;
-    #[Groups([RavworksJobsRetrieve::POST])]
-    private ?string $code = null;
+    #[ORM\Id]
+    #[ORM\Column(type: "uuid", unique: true)]
+    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private string $industryJobsRetrieveId;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startDatetime = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $creationDatetime = null;
+
+    #[ORM\Column(nullable: true)]
     private array $errors = [];
 
-    public function getId(): ?string
+    public function getIndustryJobsRetrieveId() : ?string
     {
-        return $this->id;
-    }
-    public function setId($id): self
-    {
-        $this->id = $id;
-
-        return $this;
+        return $this->industryJobsRetrieveId;
     }
 
     public function getStartDatetime(): ?\DateTimeInterface
@@ -68,4 +69,3 @@ Class RavworksJobsRetrieve
         return $this;
     }
 }
-
