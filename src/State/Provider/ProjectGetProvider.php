@@ -8,11 +8,11 @@ use App\Repository\ProjectRepository;
 use App\Service\Builder\ProjectBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-readonly class ProjectGetProvider implements providerInterface
+readonly class ProjectGetProvider implements ProviderInterface
 {
     public function __construct(
         private ProjectRepository $projectRepository,
-        private ProjectBuilder    $projectBuilder,
+        private ProjectBuilder $projectBuilder,
     ) {
     }
 
@@ -21,7 +21,6 @@ readonly class ProjectGetProvider implements providerInterface
         if (!$project = $this->projectRepository->find($uriVariables['id'])) {
             throw new NotFoundHttpException();
         }
-
 
         return $this->projectBuilder->buildFromEntity($project);
     }

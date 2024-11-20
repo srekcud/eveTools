@@ -2,7 +2,6 @@
 
 namespace App\State\Processor;
 
-
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\ApiResource\Project;
@@ -14,12 +13,12 @@ readonly class ProjectPostProcessor implements ProcessorInterface
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private ProjectBuilder         $projectBuilder,
-    ){}
+        private ProjectBuilder $projectBuilder,
+    ) {
+    }
 
     /**
      * @param Project $data
-     * @param array $context
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ProjectEntity
     {

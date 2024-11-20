@@ -3,14 +3,13 @@
 namespace App\Service\Builder;
 
 use App\Entity\IndustryJob;
-use DateTimeImmutable;
 
 class IndustryJobsBuilder
 {
     public function build($data): IndustryJob
     {
         if (isset($data['completed_date'])) {
-            $completedDate = new DateTimeImmutable($data['completed_date']);
+            $completedDate = new \DateTimeImmutable($data['completed_date']);
             $successfulRuns = $data['successful_runs'];
         } else {
             $completedDate = null;
@@ -26,8 +25,8 @@ class IndustryJobsBuilder
             ->setDuration($data['duration'])
             ->setInstallerId($data['installer_id'])
             ->setCost($data['cost'])
-            ->setStartDatetime(new DateTimeImmutable($data['start_date']))
-            ->setEndDatetime(new DateTimeImmutable($data['end_date']))
+            ->setStartDatetime(new \DateTimeImmutable($data['start_date']))
+            ->setEndDatetime(new \DateTimeImmutable($data['end_date']))
             ->setCompletedDatetime($completedDate)
             ->setFacilityId($data['facility_id'])
             ->setProbability($data['probability'])
@@ -35,5 +34,3 @@ class IndustryJobsBuilder
             ->setStatus($data['status']);
     }
 }
-
-

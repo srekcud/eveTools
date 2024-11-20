@@ -2,24 +2,22 @@
 
 namespace App\State\Processor;
 
-
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Entity\IndustryJobsRetrieve;
 use App\Service\Procedure\IndustryJobsRetrievePersonalProcedure;
 use Doctrine\ORM\EntityManagerInterface;
 
-
 readonly class IndustryJobsRetrievePersonalPostProcessor implements ProcessorInterface
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
         private IndustryJobsRetrievePersonalProcedure $industryJobsRetrievePersonalProcedure,
-    ){}
+    ) {
+    }
 
     /**
      * @param IndustryJobsRetrieve $data
-     * @param array $context
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): IndustryJobsRetrieve
     {
@@ -32,7 +30,7 @@ readonly class IndustryJobsRetrievePersonalPostProcessor implements ProcessorInt
         try {
             $ijr->setStartDatetime(new \DateTime());
             $this->industryJobsRetrievePersonalProcedure->process();
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $errors[] = $e;
         }
 
@@ -42,5 +40,4 @@ readonly class IndustryJobsRetrievePersonalPostProcessor implements ProcessorInt
 
         return $ijr;
     }
-
 }

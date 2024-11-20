@@ -11,12 +11,12 @@ use App\State\Processor\IndustryJobsRetrievePersonalPostProcessor;
     operations: [
         new Post(
             uriTemplate: '/industry/jobs/personal/retrieve',
-            shortName: "Industry",
+            shortName: 'Industry',
             processor: IndustryJobsRetrievePersonalPostProcessor::class,
-        ),//TODO: regroup the posts or a least duplicate code
+        ), // TODO: regroup the posts or a least duplicate code
         new Post(
             uriTemplate: '/industry/jobs/corporation/retrieve',
-            shortName: "Industry",
+            shortName: 'Industry',
             processor: IndustryJobsRetrieveCorporationPostProcessor::class,
         ),
     ]

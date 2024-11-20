@@ -3,7 +3,6 @@
 namespace App\MessageHandler;
 
 use App\Message\RavworksJobMessage;
-use App\Message\RavworksStockMessage;
 use App\Repository\RavworksJobRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -11,14 +10,11 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 readonly class RavworksJobMessageHandler
 {
-
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private RavworksJobRepository  $ravworksJobRepository,
-    )
-    {
+        private RavworksJobRepository $ravworksJobRepository,
+    ) {
     }
-
 
     public function __invoke(RavworksJobMessage $message): void
     {
@@ -35,9 +31,6 @@ readonly class RavworksJobMessageHandler
         )) {
             $this->entityManager->persist($job);
             $this->entityManager->flush();
-
         }
-
     }
-
 }

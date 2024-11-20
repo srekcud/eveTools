@@ -26,6 +26,7 @@ class Character
     public function setCharacterId(string $characterId): Character
     {
         $this->characterId = $characterId;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ class Character
     public function setName(string $name): Character
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -48,8 +50,7 @@ class Character
     public function setRefreshToken(?string $refreshToken): Character
     {
         $this->refreshToken = $refreshToken;
+
         return $this;
     }
-
-
 }

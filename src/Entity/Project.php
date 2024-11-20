@@ -12,8 +12,8 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 class Project
 {
     #[ORM\Id]
-    #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $projectid;
 
@@ -21,8 +21,8 @@ class Project
     private string $name;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
-//    #[ORM\OneToMany(targetEntity: RavworksStock::class, mappedBy: 'Project')]
-//    #[ORM\OneToMany(targetEntity: RavworksJobs::class, mappedBy: 'Project')]
+    //    #[ORM\OneToMany(targetEntity: RavworksStock::class, mappedBy: 'Project')]
+    //    #[ORM\OneToMany(targetEntity: RavworksJobs::class, mappedBy: 'Project')]
     private ?string $ravworksId;
 
     public function getProjectid(): string
@@ -33,6 +33,7 @@ class Project
     public function setProjectid(string $projectid): Project
     {
         $this->projectid = $projectid;
+
         return $this;
     }
 
@@ -44,6 +45,7 @@ class Project
     public function setName(string $name): Project
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -55,11 +57,7 @@ class Project
     public function setRavworksId(?string $ravworksId): Project
     {
         $this->ravworksId = $ravworksId;
+
         return $this;
     }
-
-
 }
-
-
-

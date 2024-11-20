@@ -12,8 +12,8 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 class RavworksProjectRetrieve
 {
     #[ORM\Id]
-    #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $ravworksProjectRetrieveId;
 
@@ -34,6 +34,7 @@ class RavworksProjectRetrieve
     public function setRavworksProjectRetrieveId(string $ravworksProjectRetrieveId): RavworksProjectRetrieve
     {
         $this->ravworksProjectRetrieveId = $ravworksProjectRetrieveId;
+
         return $this;
     }
 
@@ -45,6 +46,7 @@ class RavworksProjectRetrieve
     public function setStartDatetime(?\DateTimeInterface $startDatetime): RavworksProjectRetrieve
     {
         $this->startDatetime = $startDatetime;
+
         return $this;
     }
 
@@ -56,6 +58,7 @@ class RavworksProjectRetrieve
     public function setCreationDatetime(?\DateTimeInterface $creationDatetime): RavworksProjectRetrieve
     {
         $this->creationDatetime = $creationDatetime;
+
         return $this;
     }
 
@@ -67,8 +70,7 @@ class RavworksProjectRetrieve
     public function setErrors(array $errors): RavworksProjectRetrieve
     {
         $this->errors = $errors;
+
         return $this;
     }
-
-
 }

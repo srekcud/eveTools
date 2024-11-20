@@ -2,7 +2,6 @@
 
 namespace App\State\Provider;
 
-
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\Repository\ProjectRepository;
@@ -12,7 +11,7 @@ readonly class ProjectCollectionProvider implements ProviderInterface
 {
     public function __construct(
         private readonly ProjectRepository $projectRepository,
-//        private readonly ProjectBuilder             $projectBuilder,
+        //        private readonly ProjectBuilder             $projectBuilder,
     ) {
     }
 
@@ -22,6 +21,7 @@ readonly class ProjectCollectionProvider implements ProviderInterface
         $page = $context['filters']['page'] ?? 1;
 
         print_r($page);
-        print_r($projects);die();
+        print_r($projects);
+        exit;
     }
 }

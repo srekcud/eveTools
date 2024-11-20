@@ -12,14 +12,14 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 class RavworksJob
 {
     #[ORM\Id]
-    #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $ravworksJobId;
 
     #[ORM\Column(type: Types::STRING, length: 10, unique: false, nullable: false)]
-//    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: "ravworksJobs")]
-//    #[ORM\JoinColumn(name: 'ravworks_code', referencedColumnName: 'ravworks_id', nullable: false)]
+    //    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: "ravworksJobs")]
+    //    #[ORM\JoinColumn(name: 'ravworks_code', referencedColumnName: 'ravworks_id', nullable: false)]
     private string $ravworksCode;
 
     #[ORM\Column(type: Types::STRING, length: 50, unique: false, nullable: false)]
@@ -44,6 +44,7 @@ class RavworksJob
     public function setRavworksJobId(string $ravworksJobId): RavworksJob
     {
         $this->ravworksJobId = $ravworksJobId;
+
         return $this;
     }
 
@@ -55,6 +56,7 @@ class RavworksJob
     public function setRavworksCode(string $ravworksCode): RavworksJob
     {
         $this->ravworksCode = $ravworksCode;
+
         return $this;
     }
 
@@ -66,6 +68,7 @@ class RavworksJob
     public function setJobType(string $jobType): RavworksJob
     {
         $this->jobType = $jobType;
+
         return $this;
     }
 
@@ -77,6 +80,7 @@ class RavworksJob
     public function setName(string $name): RavworksJob
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -88,6 +92,7 @@ class RavworksJob
     public function setRun(int $run): RavworksJob
     {
         $this->run = $run;
+
         return $this;
     }
 
@@ -99,6 +104,7 @@ class RavworksJob
     public function setTime(float $time): RavworksJob
     {
         $this->time = $time;
+
         return $this;
     }
 
@@ -110,6 +116,7 @@ class RavworksJob
     public function setJobCost(int $jobCost): RavworksJob
     {
         $this->jobCost = $jobCost;
+
         return $this;
     }
 
@@ -121,8 +128,7 @@ class RavworksJob
     public function setJobCount(int $jobCount): RavworksJob
     {
         $this->jobCount = $jobCount;
+
         return $this;
     }
-
-
 }

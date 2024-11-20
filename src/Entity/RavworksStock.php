@@ -12,13 +12,13 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 class RavworksStock
 {
     #[ORM\Id]
-    #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $ravworksStockId;
 
     #[ORM\Column(type: Types::STRING, length: 10, unique: false, nullable: false)]
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: "ravworksStocks")]
+    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'ravworksStocks')]
     #[ORM\JoinColumn(name: 'ravworks_code', referencedColumnName: 'ravworks_id', nullable: false)]
     private string $ravworksCode;
     #[ORM\Column(type: Types::STRING)]
@@ -42,6 +42,7 @@ class RavworksStock
     public function setRavworksStockId(string $ravworksStockId): RavworksStock
     {
         $this->ravworksStockId = $ravworksStockId;
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ class RavworksStock
     public function setRavworksCode(string $ravworksCode): RavworksStock
     {
         $this->ravworksCode = $ravworksCode;
+
         return $this;
     }
 
@@ -64,6 +66,7 @@ class RavworksStock
     public function setName(string $name): RavworksStock
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -75,6 +78,7 @@ class RavworksStock
     public function setToBuy(int $toBuy): RavworksStock
     {
         $this->toBuy = $toBuy;
+
         return $this;
     }
 
@@ -86,6 +90,7 @@ class RavworksStock
     public function setToBuyValue(int $toBuyValue): RavworksStock
     {
         $this->toBuyValue = $toBuyValue;
+
         return $this;
     }
 
@@ -97,6 +102,7 @@ class RavworksStock
     public function setToBuyVolume(float $toBuyVolume): RavworksStock
     {
         $this->toBuyVolume = $toBuyVolume;
+
         return $this;
     }
 
@@ -108,6 +114,7 @@ class RavworksStock
     public function setStartAmount(int $startAmount): RavworksStock
     {
         $this->startAmount = $startAmount;
+
         return $this;
     }
 
@@ -119,7 +126,7 @@ class RavworksStock
     public function setEndAmount(int $endAmount): RavworksStock
     {
         $this->endAmount = $endAmount;
+
         return $this;
     }
-
 }

@@ -11,40 +11,37 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class RavworksProjectRetrieveProcedure
 {
-
-    const int BATCH_FLUSH = 100;
+    public const int BATCH_FLUSH = 100;
 
     public function __construct(
         private readonly RavworksStockBuilder $stockBuilder,
-        private readonly RavworksJobBuilder   $jobBuilder,
-        private readonly MessageBusInterface  $messageBus,
-
-    )
-    {
+        private readonly RavworksJobBuilder $jobBuilder,
+        private readonly MessageBusInterface $messageBus,
+    ) {
     }
 
     public function process($code)
     {
-        $html = file_get_contents('https://ravworks.com/plan/' . $code);
+        $html = file_get_contents('https://ravworks.com/plan/'.$code);
 
         $stock = $this->getArrayFromHTMLTable($html, '#stocks_table');
         foreach ($stock as $stockItem) {
             $messageStock = new RavworksStockMessage($this->stockBuilder->build($code, $stockItem));
             $this->messageBus->dispatch($messageStock);
         }
-//TODO: use compact table to avoid issue when 2 exact same jobs need to be run
+        // TODO: use compact table to avoid issue when 2 exact same jobs need to be run
         $types =
             [
-//                'endProduct' =>'#end_products_table',
-            'firstStageReaction' => '#first_stage_reacts_table_compact',
+                //                'endProduct' =>'#end_products_table',
+                'firstStageReaction' => '#first_stage_reacts_table_compact',
                 'secondStageReaction' => '#second_stage_reacts_table_compact',
                 'bioReaction' => '#bio_reacts_table_compact',
                 'hybridReaction' => '#hybrid_reactionss_table_compact',
                 'advancedComponents' => '#advanced_comps_table_compact',
                 'CapitalComponents' => '#cap_comps_table_compact',
                 'others' => '#others_table_compact',
-//                'endProductJob' => '#end_product_jobs_table',
-        ];
+                //                'endProductJob' => '#end_product_jobs_table',
+            ];
 
         foreach ($types as $type => $link) {
             $jobs = $this->getArrayFromHTMLTable($html, $link);
@@ -54,7 +51,6 @@ class RavworksProjectRetrieveProcedure
             }
         }
     }
-
 
     public function getArrayFromHTMLTable($html, $table): array
     {

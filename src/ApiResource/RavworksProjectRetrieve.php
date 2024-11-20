@@ -23,12 +23,11 @@ use App\State\Processor\RavworksProjectRetrievePostProcessor;
                     ),
                 ],
             ),
-            shortName: "Ravworks",
+            shortName: 'Ravworks',
             processor: RavworksProjectRetrievePostProcessor::class,
         ),
     ]
 )]
 class RavworksProjectRetrieve
 {
-
 }

@@ -11,11 +11,11 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 #[ORM\Entity(repositoryClass: IndustryJobsRetrieveRepository::class)]
 class IndustryJobsRetrieve
 {
-    const string POST = 'INDUSTRY_JOB_RETRIEVE_POST';
+    public const string POST = 'INDUSTRY_JOB_RETRIEVE_POST';
 
     #[ORM\Id]
-    #[ORM\Column(type: "uuid", unique: true)]
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
+    #[ORM\Column(type: 'uuid', unique: true)]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $industryJobsRetrieveId;
 
@@ -28,7 +28,6 @@ class IndustryJobsRetrieve
     #[ORM\Column(nullable: true)]
     private array $errors = [];
 
-
     public function getIndustryJobsRetrieveId(): ?string
     {
         return $this->industryJobsRetrieveId;
@@ -37,6 +36,7 @@ class IndustryJobsRetrieve
     public function setIndustryJobsRetrieveId(string $industryJobsRetrieveId): IndustryJobsRetrieve
     {
         $this->industryJobsRetrieveId = $industryJobsRetrieveId;
+
         return $this;
     }
 

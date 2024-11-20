@@ -13,15 +13,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 readonly class ProjectPatchProcessor implements ProcessorInterface
 {
     public function __construct(
-        private ProjectRepository      $projectRepository,
+        private ProjectRepository $projectRepository,
         private EntityManagerInterface $entityManager,
-    )
-    {
+    ) {
     }
 
     /**
      * @param Project $data
-     * @param array $context
      */
     public function process($data, Operation $operation, array $uriVariables = [], array $context = []): ProjectEntity
     {
@@ -36,5 +34,4 @@ readonly class ProjectPatchProcessor implements ProcessorInterface
 
         return $project;
     }
-
 }

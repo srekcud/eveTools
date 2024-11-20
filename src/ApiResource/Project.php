@@ -11,8 +11,8 @@ use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\Parameter;
 use App\State\Processor\ProjectPatchProcessor;
 use App\State\Processor\ProjectPostProcessor;
-use App\State\Provider\ProjectGetProvider;
 use App\State\Provider\ProjectCollectionProvider;
+use App\State\Provider\ProjectGetProvider;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
@@ -59,7 +59,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 class Project
 {
-    const int MAX_ITEMS_PER_PAGE = 20;
+    public const int MAX_ITEMS_PER_PAGE = 20;
     public string $projectId;
     #[Assert\NotNull(message: 'Project name cannot be null')]
     #[Assert\NotBlank(message: 'Project name cannot be blank')]

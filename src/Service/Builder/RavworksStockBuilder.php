@@ -12,11 +12,9 @@ class RavworksStockBuilder
             ->setRavworksCode($code)
             ->setName($data[1])
             ->setToBuy($data[2])
-            ->setToBuyValue((int)str_replace(",", "",$data[3]))
-            ->setToBuyVolume((float)$data[4])
+            ->setToBuyValue((int) str_replace(',', '', $data[3]))
+            ->setToBuyVolume((float) $data[4])
             ->setStartAmount($data[5])
             ->setEndAmount($data[6]);
     }
 }
-
-

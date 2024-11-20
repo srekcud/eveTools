@@ -24,8 +24,6 @@ class ProjectBuilder
         $project->setName($data->name);
         $project->setRavworksId($data->ravworkId);
 
-
         return $project;
     }
-
 }

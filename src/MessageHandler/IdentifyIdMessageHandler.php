@@ -1,4 +1,5 @@
 <?php
+
 namespace App\MessageHandler;
 
 use App\Entity\Character;
@@ -14,35 +15,31 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 #[AsMessageHandler]
 class IdentifyIdMessageHandler
 {
-    const string INVENTORY_TYPE = 'inventory_type';
-    const string CHARACTER = 'character';
+    public const string INVENTORY_TYPE = 'inventory_type';
+    public const string CHARACTER = 'character';
 
     public function __construct(
-        private readonly HttpClientInterface        $eveEsiClient,
-        private readonly InventoryTypeRepository    $inventoryTypeRepository,
-        private readonly CharacterRepository        $characterRepository,
-        private readonly EntityManagerInterface     $entityManager,
-
-    ) {}
-
+        private readonly HttpClientInterface $eveEsiClient,
+        private readonly InventoryTypeRepository $inventoryTypeRepository,
+        private readonly CharacterRepository $characterRepository,
+        private readonly EntityManagerInterface $entityManager,
+    ) {
+    }
 
     public function __invoke(IdentifyIdMessage $message): void
     {
-        //TODO : mettre ca dans une procedure ?
+        // TODO : mettre ca dans une procedure ?
         $job = $message->getJob();
         $blueprintExist = $this->inventoryTypeRepository->findOneBy(['inventoryTypeId' => $job->getBlueprintTypeId()]);
         $characterExist = $this->characterRepository->findOneBy(['characterId' => $job->getInstallerId()]);
-        //TODO: Add facility_id + output_location_id
-        if(! $blueprintExist || ! $characterExist)
-        {
+        // TODO: Add facility_id + output_location_id
+        if (!$blueprintExist || !$characterExist) {
             $nameAndType = $this->getNameAndTypeFromId($job);
 
-            foreach($nameAndType as $item)
-            {
-                switch($item['category']){
+            foreach ($nameAndType as $item) {
+                switch ($item['category']) {
                     case self::INVENTORY_TYPE:
-                        if(! $blueprintExist)
-                        {
+                        if (!$blueprintExist) {
                             $inventoryType = new InventoryType();
                             $inventoryType->setInventoryTypeId($item['id'])
                                 ->setName($item['name']);
@@ -50,7 +47,7 @@ class IdentifyIdMessageHandler
                         }
                         break;
                     case self::CHARACTER:
-                        if(! $characterExist) {
+                        if (!$characterExist) {
                             $character = new Character();
                             $character->setCharacterId($item['id'])
                                 ->setName($item['name']);
@@ -62,19 +59,16 @@ class IdentifyIdMessageHandler
                 $this->entityManager->flush();
             }
         }
-
-
     }
 
-    public function getNameAndTypeFromId(IndustryJob $job) : array
+    public function getNameAndTypeFromId(IndustryJob $job): array
     {
         $URI = 'universe/names/?datasource=tranquility';
 
         $response = $this->eveEsiClient->request(
             'POST', $URI,
             [
-                'body' =>
-                "[".$job->getBlueprintTypeId().",".$job->getInstallerId()."]"
+                'body' => '['.$job->getBlueprintTypeId().','.$job->getInstallerId().']',
             ]
         )->toArray();
 

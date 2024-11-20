@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use App\Repository\IndustryActivityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,6 +24,7 @@ class IndustryActivity
     public function setIndustryActivityId(int $IndustryActivityId): IndustryActivity
     {
         $this->IndustryActivityId = $IndustryActivityId;
+
         return $this;
     }
 
@@ -36,9 +36,7 @@ class IndustryActivity
     public function setName(string $name): IndustryActivity
     {
         $this->name = $name;
+
         return $this;
     }
-
-
-
 }

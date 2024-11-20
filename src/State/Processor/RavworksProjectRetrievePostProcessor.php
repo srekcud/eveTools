@@ -2,7 +2,6 @@
 
 namespace App\State\Processor;
 
-
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Entity\RavworksProjectRetrieve;
@@ -12,13 +11,13 @@ use Doctrine\ORM\EntityManagerInterface;
 readonly class RavworksProjectRetrievePostProcessor implements ProcessorInterface
 {
     public function __construct(
-        private EntityManagerInterface           $entityManager,
+        private EntityManagerInterface $entityManager,
         private RavworksProjectRetrieveProcedure $ravworksProjectRetrieveProcedure,
-    ){}
+    ) {
+    }
 
     /**
      * @param RavworksProjectRetrieve $data
-     * @param array $context
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): RavworksProjectRetrieve
     {
@@ -31,7 +30,7 @@ readonly class RavworksProjectRetrievePostProcessor implements ProcessorInterfac
         try {
             $rpr->setStartDatetime(new \DateTime());
             $this->ravworksProjectRetrieveProcedure->process($uriVariables['code']);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $errors[] = $e;
         }
 

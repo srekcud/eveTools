@@ -3,9 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\IndustryJobRepository;
-use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'industry_job')]
 #[ORM\Entity(repositoryClass: IndustryJobRepository::class)]
@@ -20,7 +19,7 @@ class IndustryJob
     private string $activityId;
     #[ORM\Column(type: Types::STRING, length: 50, nullable: false)]
     private string $blueprintTypeId;
-    //TODO: ADD product ID pour avoir le produit fini du job
+    // TODO: ADD product ID pour avoir le produit fini du job
     #[ORM\Column(type: Types::INTEGER, nullable: false)]
     private int $runs;
     #[ORM\Column(type: Types::BIGINT, nullable: false)]
@@ -30,11 +29,11 @@ class IndustryJob
     #[ORM\Column(type: Types::BIGINT, nullable: false)]
     private int $cost;
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private DateTimeImmutable $startDatetime;
+    private \DateTimeImmutable $startDatetime;
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private DateTimeImmutable $endDatetime;
+    private \DateTimeImmutable $endDatetime;
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private ?DateTimeImmutable $completedDatetime;
+    private ?\DateTimeImmutable $completedDatetime;
     #[ORM\Column(type: Types::STRING, length: 50, nullable: false)]
     private string $facilityId;
     #[ORM\Column(type: Types::FLOAT, nullable: false)]
@@ -52,6 +51,7 @@ class IndustryJob
     public function setIndustryJobId(int $industryJobId): IndustryJob
     {
         $this->industryJobId = $industryJobId;
+
         return $this;
     }
 
@@ -63,6 +63,7 @@ class IndustryJob
     public function setOutputLocationId(string $outputLocationId): IndustryJob
     {
         $this->outputLocationId = $outputLocationId;
+
         return $this;
     }
 
@@ -74,6 +75,7 @@ class IndustryJob
     public function setActivityId(string $activityId): IndustryJob
     {
         $this->activityId = $activityId;
+
         return $this;
     }
 
@@ -85,6 +87,7 @@ class IndustryJob
     public function setBlueprintTypeId(string $blueprintTypeId): IndustryJob
     {
         $this->blueprintTypeId = $blueprintTypeId;
+
         return $this;
     }
 
@@ -96,6 +99,7 @@ class IndustryJob
     public function setRuns(int $runs): IndustryJob
     {
         $this->runs = $runs;
+
         return $this;
     }
 
@@ -107,6 +111,7 @@ class IndustryJob
     public function setDuration(int $duration): IndustryJob
     {
         $this->duration = $duration;
+
         return $this;
     }
 
@@ -118,6 +123,7 @@ class IndustryJob
     public function setInstallerId(string $installerId): IndustryJob
     {
         $this->installerId = $installerId;
+
         return $this;
     }
 
@@ -129,39 +135,43 @@ class IndustryJob
     public function setCost(int $cost): IndustryJob
     {
         $this->cost = $cost;
+
         return $this;
     }
 
-    public function getStartDatetime(): DateTimeImmutable
+    public function getStartDatetime(): \DateTimeImmutable
     {
         return $this->startDatetime;
     }
 
-    public function setStartDatetime(DateTimeImmutable $startDatetime): IndustryJob
+    public function setStartDatetime(\DateTimeImmutable $startDatetime): IndustryJob
     {
         $this->startDatetime = $startDatetime;
+
         return $this;
     }
 
-    public function getEndDatetime(): DateTimeImmutable
+    public function getEndDatetime(): \DateTimeImmutable
     {
         return $this->endDatetime;
     }
 
-    public function setEndDatetime(DateTimeImmutable $endDatetime): IndustryJob
+    public function setEndDatetime(\DateTimeImmutable $endDatetime): IndustryJob
     {
         $this->endDatetime = $endDatetime;
+
         return $this;
     }
 
-    public function getCompletedDatetime(): ?DateTimeImmutable
+    public function getCompletedDatetime(): ?\DateTimeImmutable
     {
         return $this->completedDatetime;
     }
 
-    public function setCompletedDatetime(?DateTimeImmutable $completedDatetime): IndustryJob
+    public function setCompletedDatetime(?\DateTimeImmutable $completedDatetime): IndustryJob
     {
         $this->completedDatetime = $completedDatetime;
+
         return $this;
     }
 
@@ -173,6 +183,7 @@ class IndustryJob
     public function setFacilityId(string $facilityId): IndustryJob
     {
         $this->facilityId = $facilityId;
+
         return $this;
     }
 
@@ -184,6 +195,7 @@ class IndustryJob
     public function setProbability(float $probability): IndustryJob
     {
         $this->probability = $probability;
+
         return $this;
     }
 
@@ -195,6 +207,7 @@ class IndustryJob
     public function setSuccessful(?int $successful): IndustryJob
     {
         $this->successful = $successful;
+
         return $this;
     }
 
@@ -206,7 +219,7 @@ class IndustryJob
     public function setStatus(string $status): IndustryJob
     {
         $this->status = $status;
+
         return $this;
     }
-
 }

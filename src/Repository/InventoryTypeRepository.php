@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\IndustryJob;
 use App\Entity\InventoryType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
