@@ -10,14 +10,17 @@ use App\Entity\Project as ProjectEntity;
 use App\Service\Builder\ProjectBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ProjectPostProcessor implements ProcessorInterface
+readonly class ProjectPostProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly ProjectBuilder $projectBuilder,
+        private EntityManagerInterface $entityManager,
+        private ProjectBuilder         $projectBuilder,
     ){}
 
-    /** @param Project $data */
+    /**
+     * @param Project $data
+     * @param array $context
+     */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ProjectEntity
     {
         $project = $this->projectBuilder->buildFromApiResource($data);

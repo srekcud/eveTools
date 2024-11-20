@@ -12,15 +12,14 @@ use ApiPlatform\OpenApi\Model\Parameter;
 use App\State\Processor\ProjectPatchProcessor;
 use App\State\Processor\ProjectPostProcessor;
 use App\State\Provider\ProjectGetProvider;
-use App\State\Provider\ProjectSearchProvider;
+use App\State\Provider\ProjectCollectionProvider;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     operations: [
         new GetCollection(
-            uriTemplate: 'projects/search',
             paginationMaximumItemsPerPage: Project::MAX_ITEMS_PER_PAGE,
-            provider: ProjectSearchProvider::class
+            provider: ProjectCollectionProvider::class
         ),
         new Get(
             uriTemplate: '/projects/{id}',

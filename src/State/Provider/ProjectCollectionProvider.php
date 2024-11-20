@@ -8,11 +8,11 @@ use ApiPlatform\State\ProviderInterface;
 use App\Repository\ProjectRepository;
 use App\Service\Builder\ProjectBuilder;
 
-class ProjectSearchProvider implements ProviderInterface
+readonly class ProjectCollectionProvider implements ProviderInterface
 {
     public function __construct(
         private readonly ProjectRepository $projectRepository,
-        private ProjectBuilder             $projectBuilder,
+//        private readonly ProjectBuilder             $projectBuilder,
     ) {
     }
 

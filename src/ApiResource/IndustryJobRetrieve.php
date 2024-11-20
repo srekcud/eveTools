@@ -6,7 +6,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
 use App\State\Processor\IndustryJobsRetrieveCorporationPostProcessor;
 use App\State\Processor\IndustryJobsRetrievePersonalPostProcessor;
-use DateTimeImmutable;
 
 #[ApiResource(
     operations: [

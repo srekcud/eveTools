@@ -10,16 +10,19 @@ use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ProjectPatchProcessor implements ProcessorInterface
+readonly class ProjectPatchProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly ProjectRepository      $projectRepository,
-        private readonly EntityManagerInterface $entityManager,
+        private ProjectRepository      $projectRepository,
+        private EntityManagerInterface $entityManager,
     )
     {
     }
 
-    /** @param Project $data */
+    /**
+     * @param Project $data
+     * @param array $context
+     */
     public function process($data, Operation $operation, array $uriVariables = [], array $context = []): ProjectEntity
     {
         if (!$project = $this->projectRepository->find($uriVariables['id'])) {
@@ -29,7 +32,6 @@ class ProjectPatchProcessor implements ProcessorInterface
         $project->setName($data->name);
         $project->setRavworkId($data->ravworkId);
 
-        $this->entityManager->persist($project);
         $this->entityManager->flush();
 
         return $project;

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Repository\IndustryJobRepository;
@@ -6,13 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 
-#[ORM\table(name: 'industry_job')]
+#[ORM\Table(name: 'industry_job')]
 #[ORM\Entity(repositoryClass: IndustryJobRepository::class)]
 class IndustryJob
 {
     #[ORM\Id]
-    #[ORM\Column(type: Types::BIGINT, unique:true, nullable: false)]
-    private Int $industryJobId;
+    #[ORM\Column(type: Types::BIGINT, unique: true, nullable: false)]
+    private int $industryJobId;
     #[ORM\Column(type: Types::STRING, length: 50, nullable: false)]
     private string $outputLocationId;
     #[ORM\Column(type: Types::STRING, length: 50, nullable: false)]
@@ -21,38 +22,27 @@ class IndustryJob
     private string $blueprintTypeId;
     //TODO: ADD product ID pour avoir le produit fini du job
     #[ORM\Column(type: Types::INTEGER, nullable: false)]
-    private Int $runs;
+    private int $runs;
     #[ORM\Column(type: Types::BIGINT, nullable: false)]
-    private Int $duration;
-    #[ORM\Column(type: Types::STRING,length: 15, nullable: false)]
+    private int $duration;
+    #[ORM\Column(type: Types::STRING, length: 15, nullable: false)]
     private string $installerId;
     #[ORM\Column(type: Types::BIGINT, nullable: false)]
-    private Int $cost;
+    private int $cost;
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private DateTimeImmutable $startDatetime;
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private DateTimeImmutable $endDatetime;
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE,nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?DateTimeImmutable $completedDatetime;
-    #[ORM\Column(type: Types::STRING,length: 50, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 50, nullable: false)]
     private string $facilityId;
     #[ORM\Column(type: Types::FLOAT, nullable: false)]
-    private Float $probability;
+    private float $probability;
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    private ?Int $successful;
+    private ?int $successful;
     #[ORM\Column(type: Types::STRING, nullable: false)]
-    private String $status;
-
-    public function getSuccessful(): ?int
-    {
-        return $this->successful;
-    }
-
-    public function setSuccessful(?int $successful): IndustryJob
-    {
-        $this->successful = $successful;
-        return $this;
-    }
+    private string $status;
 
     public function getIndustryJobId(): int
     {
@@ -120,12 +110,12 @@ class IndustryJob
         return $this;
     }
 
-    public function getInstallerId(): int
+    public function getInstallerId(): string
     {
         return $this->installerId;
     }
 
-    public function setInstallerId(int $installerId): IndustryJob
+    public function setInstallerId(string $installerId): IndustryJob
     {
         $this->installerId = $installerId;
         return $this;
@@ -175,12 +165,12 @@ class IndustryJob
         return $this;
     }
 
-    public function getFacilityId(): int
+    public function getFacilityId(): string
     {
         return $this->facilityId;
     }
 
-    public function setFacilityId(int $facilityId): IndustryJob
+    public function setFacilityId(string $facilityId): IndustryJob
     {
         $this->facilityId = $facilityId;
         return $this;
@@ -197,6 +187,17 @@ class IndustryJob
         return $this;
     }
 
+    public function getSuccessful(): ?int
+    {
+        return $this->successful;
+    }
+
+    public function setSuccessful(?int $successful): IndustryJob
+    {
+        $this->successful = $successful;
+        return $this;
+    }
+
     public function getStatus(): string
     {
         return $this->status;
@@ -207,8 +208,5 @@ class IndustryJob
         $this->status = $status;
         return $this;
     }
-
-
-
 
 }

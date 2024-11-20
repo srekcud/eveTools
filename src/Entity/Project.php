@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-#[ORM\table(name: 'project')]
+#[ORM\Table(name: 'project')]
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
@@ -17,11 +17,13 @@ class Project
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private string $projectid;
 
-    #[ORM\Column(type: Types::STRING, length: 255,nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private string $name;
 
     #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
-    private ?string $ravworkId;
+//    #[ORM\OneToMany(targetEntity: RavworksStock::class, mappedBy: 'Project')]
+//    #[ORM\OneToMany(targetEntity: RavworksJobs::class, mappedBy: 'Project')]
+    private ?string $ravworksId;
 
     public function getProjectid(): string
     {
@@ -45,17 +47,16 @@ class Project
         return $this;
     }
 
-    public function getRavworkId(): ?string
+    public function getRavworksId(): ?string
     {
-        return $this->ravworkId;
+        return $this->ravworksId;
     }
 
-    public function setRavworkId(?string $ravworkId): Project
+    public function setRavworksId(?string $ravworksId): Project
     {
-        $this->ravworkId = $ravworkId;
+        $this->ravworksId = $ravworksId;
         return $this;
     }
-
 
 
 }

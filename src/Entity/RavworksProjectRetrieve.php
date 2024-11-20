@@ -2,22 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\IndustryJobsRetrieveRepository;
+use App\Repository\RavworksProjectRetrieveRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
-#[ORM\Table(name: 'industry_job_retrieve')]
-#[ORM\Entity(repositoryClass: IndustryJobsRetrieveRepository::class)]
-class IndustryJobsRetrieve
+#[ORM\Table(name: 'ravworks_project_retrieve')]
+#[ORM\Entity(repositoryClass: RavworksProjectRetrieveRepository::class)]
+class RavworksProjectRetrieve
 {
-    const string POST = 'INDUSTRY_JOB_RETRIEVE_POST';
-
     #[ORM\Id]
     #[ORM\Column(type: "uuid", unique: true)]
     #[ORM\GeneratedValue(strategy: "CUSTOM")]
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    private string $industryJobsRetrieveId;
+    private string $ravworksProjectRetrieveId;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startDatetime = null;
@@ -28,15 +26,14 @@ class IndustryJobsRetrieve
     #[ORM\Column(nullable: true)]
     private array $errors = [];
 
-
-    public function getIndustryJobsRetrieveId(): ?string
+    public function getRavworksProjectRetrieveId(): string
     {
-        return $this->industryJobsRetrieveId;
+        return $this->ravworksProjectRetrieveId;
     }
 
-    public function setIndustryJobsRetrieveId(string $industryJobsRetrieveId): IndustryJobsRetrieve
+    public function setRavworksProjectRetrieveId(string $ravworksProjectRetrieveId): RavworksProjectRetrieve
     {
-        $this->industryJobsRetrieveId = $industryJobsRetrieveId;
+        $this->ravworksProjectRetrieveId = $ravworksProjectRetrieveId;
         return $this;
     }
 
@@ -45,10 +42,9 @@ class IndustryJobsRetrieve
         return $this->startDatetime;
     }
 
-    public function setStartDatetime(\DateTimeInterface $startDatetime): self
+    public function setStartDatetime(?\DateTimeInterface $startDatetime): RavworksProjectRetrieve
     {
         $this->startDatetime = $startDatetime;
-
         return $this;
     }
 
@@ -57,10 +53,9 @@ class IndustryJobsRetrieve
         return $this->creationDatetime;
     }
 
-    public function setCreationDatetime(?\DateTimeInterface $creationDatetime): self
+    public function setCreationDatetime(?\DateTimeInterface $creationDatetime): RavworksProjectRetrieve
     {
         $this->creationDatetime = $creationDatetime;
-
         return $this;
     }
 
@@ -69,10 +64,11 @@ class IndustryJobsRetrieve
         return $this->errors;
     }
 
-    public function setErrors(?array $errors): self
+    public function setErrors(array $errors): RavworksProjectRetrieve
     {
         $this->errors = $errors;
-
         return $this;
     }
+
+
 }

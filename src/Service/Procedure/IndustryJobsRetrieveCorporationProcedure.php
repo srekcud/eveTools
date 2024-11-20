@@ -18,7 +18,6 @@ class IndustryJobsRetrieveCorporationProcedure
     const int BATCH_FLUSH = 100;
 
     const string BLUEPRINT_ID ='BLUEPRINT_ID';
-    private $inventoryType;
 
 
     public function __construct(
@@ -34,7 +33,8 @@ class IndustryJobsRetrieveCorporationProcedure
 
     ){}
 
-    public function process(){
+    public function process(): ?IndustryJob
+    {
         $accessToken = $this->getAccessToken();
 
         $listJobs = $this->getListJobs($accessToken);

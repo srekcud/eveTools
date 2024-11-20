@@ -1,6 +1,6 @@
 <?php
 
-Namespace App\Service\Builder;
+namespace App\Service\Builder;
 
 use App\ApiResource\Project;
 use App\Entity\Project as ProjectEntity;
@@ -12,7 +12,7 @@ class ProjectBuilder
         $projectApi = new Project();
         $projectApi->projectId = $project->getProjectId();
         $projectApi->name = $project->getName();
-        $projectApi->ravworkId = $project->getRavworkId();
+        $projectApi->ravworkId = $project->getRavworksId();
 
         return $projectApi;
     }
@@ -22,7 +22,7 @@ class ProjectBuilder
         $project = new ProjectEntity();
 
         $project->setName($data->name);
-        $project->setRavworkId($data->ravworkId);
+        $project->setRavworksId($data->ravworkId);
 
 
         return $project;

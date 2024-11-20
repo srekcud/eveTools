@@ -3,8 +3,17 @@ framework:
         transports:
              identify-id:
                dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/identify-id'
+             ravworks-stock:
+               dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/ravworks-stock'
+             ravworks-job:
+               dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/ravworks-job'
+
+
+
         routing:
              'App\Message\IdentifyIdMessage': identify-id
+             'App\Message\RavworksStockMessage': ravworks-stock
+             'App\Message\RavworksJobMessage': ravworks-job
 
 # when@test:
 #    framework:

@@ -17,8 +17,11 @@ readonly class IndustryJobsRetrieveCorporationPostProcessor implements Processor
         private IndustryJobsRetrieveCorporationProcedure $industryJobsRetrieveCorporationProcedure,
     ){}
 
-    /** @param IndustryJobsRetrieve $data */
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
+    /**
+     * @param IndustryJobsRetrieve $data
+     * @param array $context
+     */
+    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): IndustryJobsRetrieve
     {
         $ijr = new IndustryJobsRetrieve();
         $ijr->setCreationDatetime(new \DateTime());

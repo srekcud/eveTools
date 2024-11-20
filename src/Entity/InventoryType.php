@@ -6,15 +6,15 @@ use App\Repository\InventoryTypeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\table(name: 'inventory_type')]
+#[ORM\Table(name: 'inventory_type')]
 #[ORM\Entity(repositoryClass: InventoryTypeRepository::class)]
 class InventoryType
 {
     #[ORM\Id]
-    #[ORM\Column(type: Types::STRING, length: 10, unique:true, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 10, unique: true, nullable: false)]
     private string $inventoryTypeId;
     #[ORM\Id]
-    #[ORM\Column(type: Types::STRING, length: 250, unique:true, nullable: false)]
+    #[ORM\Column(type: Types::STRING, length: 250, unique: true, nullable: false)]
     private string $name;
 
     /**

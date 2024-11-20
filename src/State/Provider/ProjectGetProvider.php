@@ -8,11 +8,11 @@ use App\Repository\ProjectRepository;
 use App\Service\Builder\ProjectBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ProjectGetProvider implements providerInterface
+readonly class ProjectGetProvider implements providerInterface
 {
     public function __construct(
         private ProjectRepository $projectRepository,
-        private ProjectBuilder $projectBuilder,
+        private ProjectBuilder    $projectBuilder,
     ) {
     }
 

@@ -1,0 +1,8 @@
+parameters:
+    level: 5
+    paths:
+        - config/
+        - src/
+    errorFormat: prettyJson
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    treatPhpDocTypesAsCertain: false

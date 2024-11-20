@@ -5,23 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cf95c1c-f294-442f-84dc-854c38a1dfa8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/IndustryActivity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/RavworksProjectRetrieveRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/eveTools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/eveTools.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f70edb3b-791f-477e-9a4b-6d90c3e095d5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f70edb3b-791f-477e-9a4b-6d90c3e095d5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f70edb3b-791f-477e-9a4b-6d90c3e095d5/storage_v2/_src_/database/api.GnoBAA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f70edb3b-791f-477e-9a4b-6d90c3e095d5/storage_v2/_src_/database/api.GnoBAA/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiResource/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/RavworksJobsRetrieve.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Processor/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Processor/RavworksJobsRetrieveProcessor.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Procedure/RavworksJobsProcedure.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ApiResource/IndustryJobRetrieve.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiResource/IndustryJobRetrieve.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ApiResource/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiResource/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Character.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Character.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/IndustryActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/IndustryActivity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/IndustryJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/IndustryJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/IndustryJobsRetrieve.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/IndustryJobsRetrieve.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/InventoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/InventoryType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message/IdentifyIdMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message/IdentifyIdMessage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Builder/ProjectBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Builder/ProjectBuilder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Procedure/IndustryJobsRetrieveCorporationProcedure.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Procedure/IndustryJobsRetrieveCorporationProcedure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Processor/IndustryJobsRetrieveCorporationPostProcessor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Processor/IndustryJobsRetrieveCorporationPostProcessor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Processor/IndustryJobsRetrievePersonalPostProcessor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Processor/IndustryJobsRetrievePersonalPostProcessor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Processor/ProjectPatchProcessor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Processor/ProjectPatchProcessor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Processor/ProjectPostProcessor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Processor/ProjectPostProcessor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Provider/ProjectGetProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Provider/ProjectGetProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State/Provider/ProjectSearchProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Provider/ProjectCollectionProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +48,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/config/packages/messenger.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/phpstan.dist.neon" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -188,6 +199,7 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
       <path value="$PROJECT_DIR$/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -218,11 +230,17 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
         <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.23726.107" />
         <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.23726.107" />
+        <option value="php-phpstan_phpstan-970fd879c5a4-55945aa4" />
       </set>
     </attachedChunks>
   </component>
@@ -235,7 +253,8 @@
       <option name="presentableId" value="Default" />
       <updated>1731612481447</updated>
       <workItem from="1731612482462" duration="86676000" />
-      <workItem from="1732001391831" duration="10596000" />
+      <workItem from="1732001391831" duration="14750000" />
+      <workItem from="1732028215104" duration="30688000" />
     </task>
     <servers />
   </component>
