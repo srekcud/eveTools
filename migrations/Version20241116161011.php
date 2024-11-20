@@ -30,7 +30,6 @@ final class Version20241116161011 extends AbstractMigration
         $this->addSql('INSERT INTO industry_activity (industry_activity_id, name) VALUES(5,\'Copying\')');
         $this->addSql('INSERT INTO industry_activity (industry_activity_id, name) VALUES(8,\'Invention\')');
         $this->addSql('INSERT INTO industry_activity (industry_activity_id, name) VALUES(9, \'Reactions\')');
-
     }
 
     public function down(Schema $schema): void
