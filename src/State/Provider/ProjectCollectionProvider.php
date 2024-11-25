@@ -26,13 +26,14 @@ readonly class ProjectCollectionProvider implements ProviderInterface
         {
             throw new NotFoundHttpException("No projects found");
         }
+        $totalItems = count($this->projectRepository->findAll());
 
 
         return new TraversablePaginator(
             new ArrayCollection($projects),
             $page,
             Project::MAX_ITEMS_PER_PAGE,
-            count($projects),
+            $totalItems,
         );
     }
 }
