@@ -20,11 +20,12 @@ readonly class ProjectCollectionProvider implements ProviderInterface
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
-        if(! $projects = $this->projectRepository->findAll())
+        $page = $context['filters']['page'] ?? 1;
+
+        if(! $projects = $this->projectRepository->findBy([],['startDatetime' => 'ASC'],Project::MAX_ITEMS_PER_PAGE,$page))
         {
             throw new NotFoundHttpException("No projects found");
         }
-        $page = $context['filters']['page'] ?? 1;
 
 
         return new TraversablePaginator(
