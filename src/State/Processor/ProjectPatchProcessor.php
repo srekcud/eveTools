@@ -7,6 +7,7 @@ use ApiPlatform\State\ProcessorInterface;
 use App\ApiResource\Project;
 use App\Entity\Project as ProjectEntity;
 use App\Repository\ProjectRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -28,7 +29,10 @@ readonly class ProjectPatchProcessor implements ProcessorInterface
         }
 
         $project->setName($data->name);
-        $project->setRavworkId($data->ravworkId);
+        $project->setRavworkId($data->ravworksId);
+        $project->setStartDatetime($data->startDatetime);
+        $project->setCreationDatetime(new Datetime());
+        $project->setJson($data->json);
 
         $this->entityManager->flush();
 

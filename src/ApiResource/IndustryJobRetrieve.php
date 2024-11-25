@@ -7,6 +7,8 @@ use ApiPlatform\Metadata\Post;
 use App\State\Processor\IndustryJobsRetrieveCorporationPostProcessor;
 use App\State\Processor\IndustryJobsRetrievePersonalPostProcessor;
 
+//TODO : use serialization / deserialization groups
+//TODO : use security
 #[ApiResource(
     operations: [
         new Post(

@@ -11,8 +11,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class RavworksProjectRetrieveProcedure
 {
-    public const int BATCH_FLUSH = 100;
-
     public function __construct(
         private readonly RavworksStockBuilder $stockBuilder,
         private readonly RavworksJobBuilder $jobBuilder,
@@ -29,10 +27,12 @@ class RavworksProjectRetrieveProcedure
             $messageStock = new RavworksStockMessage($this->stockBuilder->build($code, $stockItem));
             $this->messageBus->dispatch($messageStock);
         }
-        // TODO: use compact table to avoid issue when 2 exact same jobs need to be run
         $types =
             [
+                // TODO : Add a "copying" step linked to each manufacturing job
+                // TODO: mettre la table End product dans une nouvelle entité
                 //                'endProduct' =>'#end_products_table',
+
                 'firstStageReaction' => '#first_stage_reacts_table_compact',
                 'secondStageReaction' => '#second_stage_reacts_table_compact',
                 'bioReaction' => '#bio_reacts_table_compact',
@@ -40,7 +40,7 @@ class RavworksProjectRetrieveProcedure
                 'advancedComponents' => '#advanced_comps_table_compact',
                 'CapitalComponents' => '#cap_comps_table_compact',
                 'others' => '#others_table_compact',
-                //                'endProductJob' => '#end_product_jobs_table',
+                'endProductJob' => '#end_product_jobs_table_compact',
             ];
 
         foreach ($types as $type => $link) {

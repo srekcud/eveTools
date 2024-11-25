@@ -12,7 +12,7 @@ readonly class ProjectGetProvider implements ProviderInterface
 {
     public function __construct(
         private ProjectRepository $projectRepository,
-        private ProjectBuilder $projectBuilder,
+//        private ProjectBuilder $projectBuilder,
     ) {
     }
 
@@ -22,6 +22,6 @@ readonly class ProjectGetProvider implements ProviderInterface
             throw new NotFoundHttpException();
         }
 
-        return $this->projectBuilder->buildFromEntity($project);
+        return $project;
     }
 }

@@ -12,7 +12,7 @@ class ProjectBuilder
         $projectApi = new Project();
         $projectApi->projectId = $project->getProjectId();
         $projectApi->name = $project->getName();
-        $projectApi->ravworkId = $project->getRavworksId();
+        $projectApi->ravworksId = $project->getRavworksId();
 
         return $projectApi;
     }
@@ -22,7 +22,7 @@ class ProjectBuilder
         $project = new ProjectEntity();
 
         $project->setName($data->name);
-        $project->setRavworksId($data->ravworkId);
+        $project->setRavworksId($data->ravworksId);
 
         return $project;
     }

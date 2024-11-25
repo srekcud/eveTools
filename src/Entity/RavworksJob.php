@@ -28,6 +28,8 @@ class RavworksJob
     private string $name;
     #[ORM\Column(type: Types::INTEGER)]
     private int $run;
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $me;
     #[ORM\Column(type: Types::FLOAT)]
     private float $time;
     #[ORM\Column(type: Types::BIGINT)]
@@ -92,6 +94,18 @@ class RavworksJob
     public function setRun(int $run): RavworksJob
     {
         $this->run = $run;
+
+        return $this;
+    }
+
+    public function getMe(): ?int
+    {
+        return $this->me;
+    }
+
+    public function setMe(?int $me): RavworksJob
+    {
+        $this->me = $me;
 
         return $this;
     }

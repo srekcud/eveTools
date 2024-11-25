@@ -13,6 +13,7 @@ use App\State\Processor\ProjectPatchProcessor;
 use App\State\Processor\ProjectPostProcessor;
 use App\State\Provider\ProjectCollectionProvider;
 use App\State\Provider\ProjectGetProvider;
+use DateTimeInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
@@ -59,12 +60,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 class Project
 {
-    public const int MAX_ITEMS_PER_PAGE = 20;
+    public const int MAX_ITEMS_PER_PAGE = 10;
     public string $projectId;
     #[Assert\NotNull(message: 'Project name cannot be null')]
     #[Assert\NotBlank(message: 'Project name cannot be blank')]
     public string $name;
-    #[Assert\NotNull(message: 'Ravwork ID cannot be null')]
-    #[Assert\NotBlank(message: 'Ravwork ID cannot be blank')]
-    public string $ravworkId;
+    #[Assert\NotNull(message: 'Ravworks ID cannot be null')]
+    #[Assert\NotBlank(message: 'Ravworks ID cannot be blank')]
+    public string $ravworksId;
+
+    public ?array $json;
+
+    public ?DateTimeInterface $startDatetime;
+    public ?DateTimeInterface $creationDatetime;
 }

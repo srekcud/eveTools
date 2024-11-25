@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20241119164020 extends AbstractMigration
+final class Version20241122185752 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,17 @@ final class Version20241119164020 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE ravworks_project_retrieve (ravworks_project_retrieve_id UUID NOT NULL, start_datetime TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, creation_datetime TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, errors JSON DEFAULT NULL, PRIMARY KEY(ravworks_project_retrieve_id))');
-        $this->addSql('COMMENT ON COLUMN ravworks_project_retrieve.ravworks_project_retrieve_id IS \'(DC2Type:uuid)\'');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_11A3DBD74CEDCB42 ON industry_ravworks_link (industry_job_id)');
+        $this->addSql('ALTER TABLE project ADD start_datetime TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
+        $this->addSql('ALTER TABLE project ADD creation_datetime TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP TABLE ravworks_project_retrieve');
+        $this->addSql('ALTER TABLE project DROP start_datetime');
+        $this->addSql('ALTER TABLE project DROP creation_datetime');
+        $this->addSql('DROP INDEX UNIQ_11A3DBD74CEDCB42');
     }
 }

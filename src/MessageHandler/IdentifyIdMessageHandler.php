@@ -32,7 +32,7 @@ class IdentifyIdMessageHandler
         $job = $message->getJob();
         $blueprintExist = $this->inventoryTypeRepository->findOneBy(['inventoryTypeId' => $job->getBlueprintTypeId()]);
         $characterExist = $this->characterRepository->findOneBy(['characterId' => $job->getInstallerId()]);
-        // TODO: Add facility_id + output_location_id
+        // TODO: Add facility_id (/universe/structures/{structure_id}/) + output_location_id (/corporations/{corporation_id}/assets/names/ )
         if (!$blueprintExist || !$characterExist) {
             $nameAndType = $this->getNameAndTypeFromId($job);
 
