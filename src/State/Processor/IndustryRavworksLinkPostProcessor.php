@@ -7,22 +7,21 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Entity\IndustryRavworksLink;
 use App\Entity\Project;
 use App\Entity\RavworksJob;
+use App\Message\IndustryRavworksLinkMessage;
 use App\Repository\IndustryJobRepository;
 use App\Repository\IndustryRavworksLinkRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\RavworksJobRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
 {
-    public const int BATCH_FLUSH = 100;
 
     public function __construct(
-        private ProjectRepository              $projectRepository,
-        private RavworksJobRepository          $ravworksJobRepository,
-        private IndustryJobRepository          $industryJobRepository,
-        private IndustryRavworksLinkRepository $industryRavworksLinkRepository,
-        private EntityManagerInterface         $entityManager,
+        private ProjectRepository     $projectRepository,
+        private RavworksJobRepository $ravworksJobRepository,
+        private MessageBusInterface   $messageBus,
     )
     {
     }
@@ -43,27 +42,12 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
 
         /** @var RavworksJob $rvJob */
         foreach ($rvJobs as $rvJob) {
-            //TODO: mettre ca en Async
-            $j = 0;
-            $industryJobs = $this->industryJobRepository->getPotentialIndustryJobsByNameAndRunsAndStartDatetime($rvJob->getName(), $rvJob->getRun(), $project->getStartDatetime());
-
-            while (count($industryJobs) > 0 && $j < $rvJob->getJobCount()) {
-
-                $irl = new IndustryRavworksLink();
-                $irl->setIndustryJobId(array_shift($industryJobs)->getIndustryJobId())
-                    ->setRavworksJobId($rvJob->getRavworksJobId());
-
-                $this->entityManager->persist($irl);
-                if (0 === $i++ % self::BATCH_FLUSH) {
-                    $this->entityManager->flush();
-                }
-                $j++;
-
-            }
-
+            $message = new IndustryRavworksLinkMessage($rvJob);
+            $this->messageBus->dispatch($message);
         }
 
-        $this->entityManager->flush();
+        return $data;
+
 
     }
 }

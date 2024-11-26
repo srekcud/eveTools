@@ -7,6 +7,8 @@ framework:
                dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/ravworks-stock'
              ravworks-job:
                dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/ravworks-job'
+             irl-link:
+               dsn: '%env(MESSENGER_TRANSPORT_DSN)%/%2f/irl-link'
 
 
 
@@ -14,6 +16,7 @@ framework:
              'App\Message\IdentifyIdMessage': identify-id
              'App\Message\RavworksStockMessage': ravworks-stock
              'App\Message\RavworksJobMessage': ravworks-job
+             'App\Message\IndustryRavworksLinkMessage': irl-link
 
 # when@test:
 #    framework:
