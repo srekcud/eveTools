@@ -21,8 +21,7 @@ readonly class ProjectCollectionProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         $page = $context['filters']['page'] ?? 1;
-
-        if(! $projects = $this->projectRepository->findBy([],['startDatetime' => 'ASC','name'=>'ASC'],Project::MAX_ITEMS_PER_PAGE,$page))
+        if(! $projects = $this->projectRepository->findBy([],['startDatetime' => 'ASC','name'=>'ASC'],Project::MAX_ITEMS_PER_PAGE,(($page - 1) * Project::MAX_ITEMS_PER_PAGE)))
         {
             throw new NotFoundHttpException("No projects found");
         }
