@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'industry_job')]
 #[ORM\Entity(repositoryClass: IndustryJobRepository::class)]
+#[ORM\Index(name: 'ij_start_datetime', columns: ['start_datetime'])]
 class IndustryJob
 {
     #[ORM\Id]

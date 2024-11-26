@@ -37,15 +37,16 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
         /** @var Project $project */
         $project = $this->projectRepository->findOneBy(['projectId' => $uriVariables['id']]);
         $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $project->getRavworksId()]);
-
 // pour chaque job rv du projet
 // trouver tous les jobs indus potentiel qui ne sont pas deja associé
 // Lier le nombre de job indus nécessaire au compte du job rv
 
         /** @var RavworksJob $rvJob */
         foreach ($rvJobs as $rvJob) {
+            //TODO: mettre ca en Async
             $j = 0;
             $industryJobs = $this->industryJobRepository->getPotentialIndustryJobsByNameAndRunsAndStartDatetime($rvJob->getName(), $rvJob->getRun(), $project->getStartDatetime());
+
             while (count($industryJobs) > 0 && $j < $rvJob->getJobCount()) {
 
                 $irl = new IndustryRavworksLink();
@@ -59,20 +60,6 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
                 $j++;
 
             }
-//
-//                            $this->entityManager->persist($irl);
-//
-//                            if (0 === $i++ % self::BATCH_FLUSH) {
-//                                $this->entityManager->flush();
-//                            }
-//
-//                        }
-//                    }
-//
-//                }
-//
-//
-//            }
 
         }
 

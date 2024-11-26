@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'inventory_type')]
 #[ORM\Entity(repositoryClass: InventoryTypeRepository::class)]
+#[ORM\Index(name: 'it_name', columns: ['name'])]
+
 class InventoryType
 {
     #[ORM\Id]
