@@ -22,9 +22,15 @@ readonly class IndustryRavworksLinkCollectionProvider implements ProviderInterfa
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
-        if(! $irl = $this->ravworksJobRepository->getIRLByProjectIdAndJobType($uriVariables['id'], $uriVariables['type']))
+        // todo : remove pagination since it's not correctly used
+        if(! $irl = $this->ravworksJobRepository->getIRLByProjectRVIdAndJobType($uriVariables['code'], $uriVariables['type']))
         {
-            throw new NotFoundHttpException("No projects found");
+            return new TraversablePaginator(
+                new ArrayCollection([]),
+                1,
+                Project::MAX_ITEMS_PER_PAGE,
+                0,
+            );
         }
         $page = $context['filters']['page'] ?? 1;
 

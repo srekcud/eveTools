@@ -16,6 +16,8 @@ use App\State\Provider\ProjectGetProvider;
 use DateTimeInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+//TODO : prévoir le fait que le json peut etre nul a l'encodage
+
 #[ApiResource(
     operations: [
         new GetCollection(

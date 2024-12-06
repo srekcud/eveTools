@@ -11,6 +11,7 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 #[ORM\Entity(repositoryClass: RavworksJobRepository::class)]
 class RavworksJob
 {
+    //TODO : add a "display" column to handle manual fix for wrong ravwork run count
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
@@ -37,6 +38,9 @@ class RavworksJob
 
     #[ORM\Column(type: Types::INTEGER)]
     private int $jobCount;
+
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false,options: ['default' => true])]
+    private boolean $display;
 
     public function getRavworksJobId(): string
     {
@@ -145,4 +149,16 @@ class RavworksJob
 
         return $this;
     }
+
+    public function getDisplay(): bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(bool $display): RavworksJob
+    {
+        $this->display = $display;
+        return $this;
+    }
+
 }

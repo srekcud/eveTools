@@ -34,8 +34,8 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
 
 
         /** @var Project $project */
-        $project = $this->projectRepository->findOneBy(['projectId' => $uriVariables['id']]);
-        $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $project->getRavworksId()]);
+//        $project = $this->projectRepository->findOneBy(['ravworksId' => ]);
+        $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $uriVariables['code']]);
 // pour chaque job rv du projet
 // trouver tous les jobs indus potentiel qui ne sont pas deja associé
 // Lier le nombre de job indus nécessaire au compte du job rv

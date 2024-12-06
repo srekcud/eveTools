@@ -14,17 +14,17 @@ use App\State\Provider\IndustryRavworksLinkCollectionProvider;
 #[ApiResource(
     operations: [
         new Post(
-            uriTemplate: '/projects/{id}/link',
+            uriTemplate: '/projects/{code}/link',
             openapi: new Operation(
                 summary: 'Link ravworks and industry jobs',
                 description: 'links ravworks and industry jobs to display them together afterward',
                 parameters: [
                     new Parameter(
-                        name: 'id',
+                        name: 'code',
                         in: 'path',
-                        description: 'The project id',
+                        description: 'The project ravworks id',
                         required: true,
-                        example: '22ee0813-ae21-4c0a-9067-207feda55522'
+                        example: 'j0oHgrO'
                     ),
                 ],
             ),
@@ -32,17 +32,17 @@ use App\State\Provider\IndustryRavworksLinkCollectionProvider;
             processor: IndustryRavworksLinkPostProcessor::class,
         ),
         new GetCollection(
-            uriTemplate: '/projects/{id}/details/{type}',
+            uriTemplate: '/projects/{code}/details/{type}',
             openapi: new Operation(
-                summary: 'Link ravworks and industry jobs',
-                description: 'links ravworks and industry jobs to display them together afterward',
+                summary: 'give detailled element of a project',
+                description: 'give detailled element of a project',
                 parameters: [
                     new Parameter(
-                        name: 'id',
+                        name: 'code',
                         in: 'path',
-                        description: 'The project id',
+                        description: 'The project ravworks id',
                         required: true,
-                        example: '22ee0813-ae21-4c0a-9067-207feda55522'
+                        example: 'j0oHgrO'
                     ),
                     new Parameter(
                         name: 'type',
@@ -54,7 +54,7 @@ use App\State\Provider\IndustryRavworksLinkCollectionProvider;
                 ],
             ),
             shortName: 'Project',
-            paginationMaximumItemsPerPage: IndustryRavworksLink::MAX_ITEMS_PER_PAGE,
+            paginationEnabled: false,
             provider: IndustryRavworksLinkCollectionProvider::class
         )
     ]

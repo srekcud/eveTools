@@ -17,21 +17,23 @@ class RavworksJobRepository extends ServiceEntityRepository
         parent::__construct($registry, RavworksJob::class);
     }
 
-    public function getIRLByProjectIdAndJobType($id, $type)
+    public function getIRLByProjectRVIdAndJobType($code, $type)
     {
-        //TODO : find a way to make a right join
         return $this->createQueryBuilder('rj')
-            ->select('rj.name,rj.jobCount,rj.run,rj.jobCost,c.name as character,ij.startDatetime,ij.endDatetime,coalesce(ij.status,\'not started\') as status')
+            ->select('rj.name,rj.jobCount,rj.run,ij.cost,c.name as character,ij.startDatetime,ij.endDatetime,coalesce(ij.status,\'not started\') as status')
             ->leftJoin(IndustryRavworksLink::class, 'irl', 'WITH', 'rj.ravworksJobId = irl.ravworksJobId')
             ->leftJoin(Project::class, 'p', 'WITH', 'rj.ravworksCode = p.ravworksId')
             ->leftJoin(IndustryJob::class, 'ij', 'WITH', 'irl.industryJobId = ij.industryJobId')
             ->leftJoin(Character::class, 'c', 'WITH', 'ij.installerId = c.characterId')
-            ->Where('p.projectId = :id')
+            ->Where('p.ravworksId = :code')
             ->andWhere('rj.jobType = :type')
-            ->setParameter('id', $id)
+            ->andWhere('rj.display = true')
+            ->orderBy('ij.startDatetime', 'ASC')
+            ->addOrderBy('status', 'ASC')
+            ->setParameter('code', $code)
             ->setParameter('type', $type)
             ->getQuery()
             ->getResult();
-//            ->orderBy('r.name', 'ASC')
+
     }
 }

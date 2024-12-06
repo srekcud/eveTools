@@ -9,6 +9,7 @@ use App\State\Processor\IndustryJobsRetrievePersonalPostProcessor;
 
 //TODO : use serialization / deserialization groups
 //TODO : use security
+//TODO : use multiple user for personnal post processor
 #[ApiResource(
     operations: [
         new Post(
