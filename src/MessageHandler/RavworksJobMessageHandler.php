@@ -29,6 +29,7 @@ readonly class RavworksJobMessageHandler
                 'jobCount' => $job->getJobCount(),
             ]
         )) {
+            $job->setDisplay(true);
             $this->entityManager->persist($job);
             $this->entityManager->flush();
         }

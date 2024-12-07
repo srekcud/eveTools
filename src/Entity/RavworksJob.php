@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RavworksJobRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 #[ORM\Table(name: 'ravworks_job')]
@@ -39,8 +40,8 @@ class RavworksJob
     #[ORM\Column(type: Types::INTEGER)]
     private int $jobCount;
 
-    #[ORM\Column(type: Types::BOOLEAN, nullable: false,options: ['default' => true])]
-    private boolean $display;
+    #[ORM\Column(type: Types::BOOLEAN,nullable: false, options: ['default' => true])]
+    private bool $display;
 
     public function getRavworksJobId(): string
     {
