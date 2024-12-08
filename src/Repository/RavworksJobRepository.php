@@ -20,7 +20,7 @@ class RavworksJobRepository extends ServiceEntityRepository
     public function getIRLByProjectRVIdAndJobType($code, $type)
     {
         return $this->createQueryBuilder('rj')
-            ->select('rj.name,rj.jobCount,rj.run,ij.cost,c.name as character,ij.startDatetime,ij.endDatetime,coalesce(ij.status,\'not started\') as status')
+            ->select('rj.ravworksJobId,rj.name,rj.jobCount,rj.run,ij.cost,c.name as character,ij.startDatetime,ij.endDatetime,coalesce(ij.status,\'not started\') as status')
             ->leftJoin(IndustryRavworksLink::class, 'irl', 'WITH', 'rj.ravworksJobId = irl.ravworksJobId')
             ->leftJoin(Project::class, 'p', 'WITH', 'rj.ravworksCode = p.ravworksId')
             ->leftJoin(IndustryJob::class, 'ij', 'WITH', 'irl.industryJobId = ij.industryJobId')

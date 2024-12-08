@@ -4,28 +4,25 @@ namespace App\State\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Entity\IndustryRavworksLink;
-use App\Entity\Project;
 use App\Entity\RavworksJob;
 use App\Message\IndustryRavworksLinkMessage;
-use App\Repository\IndustryJobRepository;
-use App\Repository\IndustryRavworksLinkRepository;
-use App\Repository\ProjectRepository;
 use App\Repository\RavworksJobRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
 {
 
     public function __construct(
-        private ProjectRepository     $projectRepository,
         private RavworksJobRepository $ravworksJobRepository,
         private MessageBusInterface   $messageBus,
     )
     {
     }
 
+    /**
+     * @param array<string, mixed>&array{request?: Request, previous_data?: mixed, resource_class?: string|null, original_data?: mixed} $context
+     */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
     {
         //TODO : tenir compte des dates de création et de démarrage du projet pour éviter de relier les mauvaise id
@@ -33,8 +30,6 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
         $i = 0;
 
 
-        /** @var Project $project */
-//        $project = $this->projectRepository->findOneBy(['ravworksId' => ]);
         $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $uriVariables['code']]);
 // pour chaque job rv du projet
 // trouver tous les jobs indus potentiel qui ne sont pas deja associé

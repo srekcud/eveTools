@@ -7,6 +7,7 @@ use ApiPlatform\State\ProcessorInterface;
 use App\Entity\RavworksProjectRetrieve;
 use App\Service\Procedure\RavworksProjectRetrieveProcedure;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 readonly class RavworksProjectRetrievePostProcessor implements ProcessorInterface
 {
@@ -18,6 +19,7 @@ readonly class RavworksProjectRetrievePostProcessor implements ProcessorInterfac
 
     /**
      * @param RavworksProjectRetrieve $data
+     * @param array<string, mixed>&array{request?: Request, previous_data?: mixed, resource_class?: string|null, original_data?: mixed} $context
      */
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): RavworksProjectRetrieve
     {

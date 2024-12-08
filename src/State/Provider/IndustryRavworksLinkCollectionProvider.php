@@ -6,6 +6,9 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\Pagination\TraversablePaginator;
 use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\Project;
+use App\Entity\IndustryRavworksLink;
+use App\Entity\RavworksJob;
+use App\Repository\IndustryJobRepository;
 use App\Repository\IndustryRavworksLinkRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\RavworksJobRepository;
@@ -16,7 +19,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 readonly class IndustryRavworksLinkCollectionProvider implements ProviderInterface
 {
     public function __construct(
-        private readonly RavworksJobRepository  $ravworksJobRepository,
+        private readonly RavworksJobRepository $ravworksJobRepository,
+        private IndustryRavworksLinkRepository $industryRavworksLinkRepository,
     ) {
     }
 
@@ -33,6 +37,31 @@ readonly class IndustryRavworksLinkCollectionProvider implements ProviderInterfa
             );
         }
         $page = $context['filters']['page'] ?? 1;
+
+        $p = [];
+        foreach($irl as $item)
+        {
+            $rvID = $item['ravworksJobId']->toString();
+            $c = count($this->industryRavworksLinkRepository->findBy(['ravworksJobId'=>$rvID]));
+            /** @var RavworksJob $rvjob */
+            $rvjob = $this->ravworksJobRepository->findOneBy(['ravworksJobId'=>$rvID]);
+
+            while($c < $rvjob->getJobCount()-1 ){
+                $c++;
+                $p[] = [
+                    "ravworksJobId" => $rvID,
+                    "name" => $rvjob->getName(),
+                    "run" => $rvjob->getRun(),
+                    "status" => "not Started"
+                ];
+
+
+            }
+
+        }
+
+        $irl = array_merge($irl, $p);
+        usort($irl, fn($a, $b) => strcmp($a['name'], $b['name']));
 
         return new TraversablePaginator(
             new ArrayCollection($irl),

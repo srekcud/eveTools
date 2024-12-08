@@ -9,6 +9,7 @@ use App\Entity\Project as ProjectEntity;
 use App\Repository\ProjectRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 readonly class ProjectPatchProcessor implements ProcessorInterface
@@ -21,6 +22,7 @@ readonly class ProjectPatchProcessor implements ProcessorInterface
 
     /**
      * @param Project $data
+     * @param array<string, mixed>&array{request?: Request, previous_data?: mixed, resource_class?: string|null, original_data?: mixed} $context
      */
     public function process($data, Operation $operation, array $uriVariables = [], array $context = []): ProjectEntity
     {
