@@ -29,8 +29,8 @@ readonly class IndustryRavworksLinkPostProcessor implements ProcessorInterface
         // + tenir compte de la contrainte d'unicité établie pour l'industry ID dans le link
         $i = 0;
 
-
-        $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $uriVariables['code']]);
+        //TODO : recheck when we need other activity then manufacturing here
+        $rvJobs = $this->ravworksJobRepository->findBy(['ravworksCode' => $uriVariables['code'],'display'=>true]);
 // pour chaque job rv du projet
 // trouver tous les jobs indus potentiel qui ne sont pas deja associé
 // Lier le nombre de job indus nécessaire au compte du job rv

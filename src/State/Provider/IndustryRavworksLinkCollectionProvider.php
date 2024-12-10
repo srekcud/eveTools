@@ -39,23 +39,29 @@ readonly class IndustryRavworksLinkCollectionProvider implements ProviderInterfa
         $page = $context['filters']['page'] ?? 1;
 
         $p = [];
+        $ids = [];
         foreach($irl as $item)
         {
             $rvID = $item['ravworksJobId']->toString();
+            if(in_array($rvID, $ids)){
+                continue;
+            }else{
+                $ids[] = $rvID;
+            }
             $c = count($this->industryRavworksLinkRepository->findBy(['ravworksJobId'=>$rvID]));
             /** @var RavworksJob $rvjob */
             $rvjob = $this->ravworksJobRepository->findOneBy(['ravworksJobId'=>$rvID]);
 
-            while($c < $rvjob->getJobCount()-1 ){
+            ($item['status'] == 'not Started')? $minus = 1:$minus = 0; //TODO: put not started tring in a CONST
+
+            while($c < ($rvjob->getJobCount() - $minus)){
                 $c++;
                 $p[] = [
                     "ravworksJobId" => $rvID,
                     "name" => $rvjob->getName(),
                     "run" => $rvjob->getRun(),
-                    "status" => "not Started"
+                    "status" => "not started"
                 ];
-
-
             }
 
         }

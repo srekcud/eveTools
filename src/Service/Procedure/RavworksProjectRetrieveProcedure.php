@@ -38,7 +38,7 @@ class RavworksProjectRetrieveProcedure
                 'bioReaction' => '#bio_reacts_table_compact',
                 'hybridReaction' => '#hybrid_reactionss_table_compact',
                 'advancedComponents' => '#advanced_comps_table_compact',
-                'CapitalComponents' => '#cap_comps_table_compact',
+                'capitalComponents' => '#cap_comps_table_compact',
                 'others' => '#others_table_compact',
                 'endProductJob' => '#end_product_jobs_table_compact',
             ];

@@ -28,6 +28,7 @@ class IndustryJobRepository extends ServiceEntityRepository
             ->Where('it.name = :name')
             ->AndWhere('industryJob.runs = :runs')
             ->AndWhere('industryJob.startDatetime >= :start')
+            ->AndWhere('industryJob.activityId = \'1\'')
             ->AndWhere($qb->expr()->notIn('industryJob.industryJobId', $sub->getDQL()))
             ->OrderBy('industryJob.startDatetime', 'ASC')
             ->setParameter('name', $name)
